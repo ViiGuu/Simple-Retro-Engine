@@ -1,0 +1,3 @@
+C:/Users/viggo/source/repos/SRE2/build/CMakeFiles/SRE2.dir
+C:/Users/viggo/source/repos/SRE2/build/CMakeFiles/edit_cache.dir
+C:/Users/viggo/source/repos/SRE2/build/CMakeFiles/rebuild_cache.dir
