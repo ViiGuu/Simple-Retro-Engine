@@ -15,23 +15,29 @@ include_directories(include)
 
 ## GOOGLE TEST ##
 
-# Add GoogleTest submodule
-add_subdirectory(googletest)
-
-# Enable testing
-enable_testing()
-
-# Add the test files from tests dir
-set(TEST_FILES
+add_subdirectory(googletest) # Add GoogleTest submodule
+enable_testing() # Enable testing
+set(TEST_FILES # Add the test files from tests dir
     tests/test_Engine.cpp
     #Add additional tests
 )
+add_executable(SRE2Tests ${TEST_FILES}) # Create the test executable
+target_link_libraries(SRE2Tests gtest gtest_main SRE2) # Link Google Test libraries and your library
+add_test(NAME SRE2TestSuite COMMAND SRE2Tests) # Add tests
 
-# Create the test executable
-add_executable(SRE2Tests ${TEST_FILES})
+#Link libraries
+find_package(SDL2 CONFIG REQUIRED)
+    target_link_libraries(SRE2
+        PRIVATE
+        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+    )
 
-# Link Google Test libraries and your library
-target_link_libraries(SRE2Tests gtest gtest_main SRE2)
+find_package(SDL2_ttf CONFIG REQUIRED)
+    target_link_libraries(SRE2 PRIVATE $<IF:$<TARGET_EXISTS:SDL2_ttf::SDL2_ttf>,SDL2_ttf::SDL2_ttf,SDL2_ttf::SDL2_ttf-static>)
 
-# Add tests
-add_test(NAME SRE2TestSuite COMMAND SRE2Tests)
+find_package(SDL2_mixer CONFIG REQUIRED)
+    target_link_libraries(SRE2 PRIVATE $<IF:$<TARGET_EXISTS:SDL2_mixer::SDL2_mixer>,SDL2_mixer::SDL2_mixer,SDL2_mixer::SDL2_mixer-static>)
+
+find_package(SDL2_image CONFIG REQUIRED)
+    target_link_libraries(SRE2 PRIVATE $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>)
