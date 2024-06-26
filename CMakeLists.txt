@@ -7,11 +7,31 @@ project(SRE2)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-#Add executable
-# add_executable(SRE2 src/main.cpp src/Engine.cpp src/Sprite.cpp)
-
-#Add library
+# Add library
 add_library(SRE2 SHARED src/Engine.cpp)
 
-#Include directories
+# Include directories
 include_directories(include)
+
+## GOOGLE TEST ##
+
+# Add GoogleTest submodule
+add_subdirectory(googletest)
+
+# Enable testing
+enable_testing()
+
+# Add the test files from tests dir
+set(TEST_FILES
+    tests/test_Engine.cpp
+    #Add additional tests
+)
+
+# Create the test executable
+add_executable(SRE2Tests ${TEST_FILES})
+
+# Link Google Test libraries and your library
+target_link_libraries(SRE2Tests gtest gtest_main SRE2)
+
+# Add tests
+add_test(NAME SRE2TestSuite COMMAND SRE2Tests)
