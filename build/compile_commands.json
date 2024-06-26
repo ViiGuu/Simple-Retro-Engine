@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/viggo/source/repos/SRE2/build",
-  "command": "C:/msys64/ucrt64/bin/c++.exe -DSRE2_EXPORTS @CMakeFiles/SRE2.dir/includes_CXX.rsp -g -std=gnu++11 -o CMakeFiles/SRE2.dir/src/Engine.cpp.obj -c C:/Users/viggo/source/repos/SRE2/src/Engine.cpp",
-  "file": "C:/Users/viggo/source/repos/SRE2/src/Engine.cpp",
-  "output": "CMakeFiles/SRE2.dir/src/Engine.cpp.obj"
-}
-]
