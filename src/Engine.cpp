@@ -3,10 +3,24 @@
 
 Engine::Engine()
 {
+    if(engineCreated == false)
+    {
+        //create engine
+    }
+    engineCreated = true;
+}
+
+void Engine::run()
+{
 
 }
 
-std::string Engine::doStuff()
+void Engine::initialize()
 {
-    return "Stuff done B)";
+
+}
+
+void Engine::destroy()
+{
+
 }

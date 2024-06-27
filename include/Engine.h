@@ -4,13 +4,20 @@
 #include "Sprite.h"
 #include <iostream>
 #include <string>
+#include "SDL.h"
 
-class Engine{
+class Engine
+{
 public:
-    Engine();
-    std::string doStuff();
+    void run();
 protected:
 private:
+    Engine(){}
+    ~Engine(){}
+    void initialize();
+    void destroy();
 };
+
+static bool engineCreated = false;
 
 #endif
