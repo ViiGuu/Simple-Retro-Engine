@@ -8,9 +8,7 @@
 #include <stdexcept>
 #include <memory>
 
-//TODO: sort memory management in destructor
-//TODO: Create unit tests for Engine class.
-
+//TODO: Set up debugging for Google Test
 namespace sre
 {
     /**
@@ -27,7 +25,7 @@ namespace sre
         public:
             ~Engine(){}
             /** Creates a new Engine instance. */
-            static std::unique_ptr<Engine> create();
+            static Engine* create() { return new Engine(); }
 
             /** Initializes the engine with the given window name.
              * 
@@ -47,7 +45,6 @@ namespace sre
             Engine(){}
              /** Updates the various behaviours in the game. */
             void update();
-            friend std::unique_ptr<Engine> create();
     };
 }
 

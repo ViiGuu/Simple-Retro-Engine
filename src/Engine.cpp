@@ -2,11 +2,6 @@
 
 namespace sre
 {
-    std::unique_ptr<Engine> Engine::create()
-    {
-        return std::unique_ptr<Engine>(new Engine());
-    }
-
     void Engine::initialize(std::string windowName)
     {
         SDL_Init(SDL_INIT_EVERYTHING);
