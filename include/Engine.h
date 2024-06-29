@@ -13,40 +13,42 @@
 
 namespace sre
 {
-/**
- * The main engine responsible for running the game. Engine creation uses the factory method pattern using the create() function.
- * Before calling the run() function to start the game loop, the engine must be initialized using the initialize() function.
- * 
- * While single-object creation is not strictly enforced, 
- * creating more than one Engine object will result in undefined behaviour.
- * 
- * @author Viggo Gustafsson
- */
-class Engine
-{
-    public:
-        /** Creates a new Engine instance. */
-        static std::unique_ptr<Engine> create();
+    /**
+     * The main engine responsible for running the game. Engine creation uses the factory method pattern using the create() function.
+     * Before calling the run() function to start the game loop, the engine must be initialized using the initialize() function.
+     * 
+     * While single-object creation is not strictly enforced, 
+     * creating more than one Engine object will result in undefined behaviour.
+     * 
+     * @author Viggo Gustafsson
+     */
+    class Engine
+    {
+        public:
+            ~Engine(){}
+            /** Creates a new Engine instance. */
+            static std::unique_ptr<Engine> create();
 
-        Engine(const Engine&) = delete; 
+            /** Initializes the engine with the given window name.
+             * 
+             * @param windowName The name of the window.
+             */
+            void initialize(std::string windowName);
 
-        Engine operator= (const Engine&) = delete;
+            /** Function responsible for running the main game loop. */
+            void run();
 
-        /** Initializes the engine. */
-        void initialize();
-
-        /** Runs the game loop. */
-        void run();
-
-        /** Handles cleaning up of resources and quits the game. */
-        void quit();
-    protected:
-    private:
-        ~Engine(){}
-        Engine(){}
-        void destroy();
-        friend std::unique_ptr<Engine> create();
-};
+            /** Handles cleaning up of resources and quits the game. */
+            void quit();
+            Engine(const Engine&) = delete; 
+            Engine operator= (const Engine&) = delete;
+        protected:
+        private:
+            Engine(){}
+             /** Updates the various behaviours in the game. */
+            void update();
+            friend std::unique_ptr<Engine> create();
+    };
 }
 
 
