@@ -5,7 +5,7 @@ using namespace sre;
 
 TEST(EngineTest, CreateEngine)
 {
-   Engine* engine = Engine::create();
+   Engine* engine = createEngine();
    ASSERT_TRUE(engine != nullptr);
 }
 

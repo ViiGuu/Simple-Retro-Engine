@@ -17,10 +17,9 @@ namespace sre
 
     }
 
-    void Engine::quit()
+    Engine::~Engine()
     {
-
+        SDL_Quit();
     }
-    
 
 }
