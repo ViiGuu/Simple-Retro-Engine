@@ -15,7 +15,7 @@ namespace sre
     /**
      * The main engine responsible for running the game.
      * The engine is created using the free function createEngine(). Once the Engine should shut down,
-     * call the free function destroyEngine() to ensure proper cleanup of resources.
+     * call the free function destroyEngine() to ensure proper cleanup of resources. Do not delete the Engine manually.
      * Before calling the run() function to start the game loop, the engine must be initialized using the initialize() function.
      * 
      * While single-object creation is not strictly enforced, 
@@ -44,12 +44,13 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
+            
             Engine() {}
              /** Updates the various behaviours in the game. */
             void update();
     };
    
-   /** Holds a collection of smart pointers to Engine objects. */
+   /** Holds a collection of smart pointers to Engine objects, allowing automatic memory cleanup. */
     class Engines
     {
         public:
@@ -69,9 +70,11 @@ namespace sre
         return Engines::engines.back().get();
     }
 
-    /** Destroys any and all created Engine objects */
+    /** Destroys the Engine. Call when the game should shut down. */
     extern void destroyEngine()
     {
+        //The function logic allows more than one engine to be destroyed,
+        //note that this is for testing purposes. See Engine class documentation.
         Engines::engines.clear();
     }
 
