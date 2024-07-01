@@ -78,6 +78,7 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "variant": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "chrono": "cpp"
     }
 }

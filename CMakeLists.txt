@@ -14,7 +14,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add library
-add_library(SRE2 SHARED src/Engine.cpp)
+add_library(SRE2 SHARED 
+    src/Engine.cpp)
 
 # Include directories
 include_directories(include)
