@@ -8,7 +8,6 @@
 #include <stdexcept>
 #include <memory>
 #include <vector>
-//#include "Manager.h"
 
 //TODO: Create EngineManager implementation of Manager and replace Engines.
 //TODO: Set up debugging for Google Test
@@ -29,8 +28,8 @@ namespace sre
     {
         public:
             ~Engine();
-            friend Engine* createEngine();
-            friend void destroyEngine();
+            // friend Engine* createEngine();
+            // friend void destroyEngine();
             /** Initializes the engine with the given window name.
              * 
              * @param windowName The name of the window.
@@ -45,39 +44,41 @@ namespace sre
             Engine(const Engine&) = delete; 
             Engine operator= (const Engine&) = delete;
         protected:
-        private:
-             Engine() {}
-             /** Updates the various behaviours in the game. */
-            void update();
-    };
-   
-   /** Holds a collection of smart pointers to Engine objects, allowing automatic memory cleanup. */
-    class Engines
-    {
-        public:
-        friend Engine* createEngine();
-        friend void destroyEngine();
             
         private:
-        static std::vector<std::unique_ptr<Engine>> engines;
+            Engine() = default;
+             /** Updates the various behaviours in the game. */
+            void update();
+            friend class EngineManager;
     };
+   
+//    /** Holds a collection of smart pointers to Engine objects, allowing automatic memory cleanup. */
+//     class Engines
+//     {
+//         public:
+//         friend Engine* createEngine();
+//         friend void destroyEngine();
+            
+//         private:
+//         static std::vector<std::unique_ptr<Engine>> engines;
+//     };
 
-    std::vector<std::unique_ptr<Engine>> Engines::engines;
+//     std::vector<std::unique_ptr<Engine>> Engines::engines;
 
-    /** Creates a new Engine object associated with a smart pointer and returns it */
-    extern Engine* createEngine() 
-    {
-        Engines::engines.emplace_back(std::unique_ptr<Engine>(new Engine()));
-        return Engines::engines.back().get();
-    }
+//     /** Creates a new Engine object associated with a smart pointer and returns it */
+//     extern Engine* createEngine() 
+//     {
+//         Engines::engines.emplace_back(std::unique_ptr<Engine>(new Engine()));
+//         return Engines::engines.back().get();
+//     }
 
-    /** Destroys the Engine. Call when the game should shut down. */
-    extern void destroyEngine()
-    {
-        //The function logic allows more than one engine to be destroyed,
-        //note that this is for testing purposes. See Engine class documentation.
-        Engines::engines.clear();
-    }
+//     /** Destroys the Engine. Call when the game should shut down. */
+//     extern void destroyEngine()
+//     {
+//         //The function logic allows more than one engine to be destroyed,
+//         //note that this is for testing purposes. See Engine class documentation.
+//         Engines::engines.clear();
+//     }
 
 }
 

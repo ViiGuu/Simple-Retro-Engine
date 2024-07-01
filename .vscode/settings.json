@@ -79,6 +79,8 @@
         "thread": "cpp",
         "variant": "cpp",
         "list": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp"
     }
 }
