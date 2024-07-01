@@ -4,9 +4,9 @@ cmake_minimum_required(VERSION 3.10)
 project(SRE2)
 
 # Detect and set vcpkg toolchain file
-#if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "vcpkg toolchain file")
-#endif()
+endif()
 
 
 # Specify the C++ standard
