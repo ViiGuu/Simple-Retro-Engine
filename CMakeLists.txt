@@ -25,14 +25,15 @@ include_directories(include)
     add_subdirectory(googletest) # Add GoogleTest submodule
     enable_testing() # Enable testing
 
-    set(TEST_FILES # Add the test files here
-        tests/test_Engine.cpp
-        #Add additional tests
-    )
-    add_executable(SRE2Tests ${TEST_FILES}) # Create the test executable
-    target_link_libraries(SRE2Tests gtest gtest_main SRE2) # Link Google Test libraries and your library
-    add_test(NAME SRE2TestSuite COMMAND SRE2Tests) # Add tests
+    # Function to create a test suite for a class
+    function(add_test_suite class_name)
+        set(test_name "${class_name}Tests")
+        add_executable(${test_name} tests/test_${class_name}.cpp)
+        target_link_libraries(${test_name} gtest gtest_main SRE2)
+        add_test(NAME ${class_name}TestSuite COMMAND ${test_name})
+    endfunction()
 
+    add_test_suite(Engine)
 
 ##### INCLUDE AND LINK LIBRARIES #####
 # Set target_link_libraries to PUBLIC to avoid #include errors

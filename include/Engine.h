@@ -8,7 +8,7 @@
 #include <stdexcept>
 #include <memory>
 #include <vector>
-#include "Manager.h"
+//#include "Manager.h"
 
 //TODO: Create EngineManager implementation of Manager and replace Engines.
 //TODO: Set up debugging for Google Test
@@ -46,8 +46,7 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
-            
-            Engine() {}
+             Engine() {}
              /** Updates the various behaviours in the game. */
             void update();
     };
