@@ -8,8 +8,6 @@ template <typename T>
 class Manager
 {
     public:
-        Manager() = default;
-        ~Manager() = default;
         virtual T& create() 
         { 
             if (managed) 

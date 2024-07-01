@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <memory>
 #include <vector>
+#include "Manager.h"
 
 //TODO: Create EngineManager implementation of Manager and replace Engines.
 //TODO: Set up debugging for Google Test
