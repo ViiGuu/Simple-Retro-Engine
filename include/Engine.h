@@ -10,14 +10,12 @@
 #include <vector>
 #include "Manager.h"
 
-//TODO: Create EngineManager implementation of Manager and replace Engines.
-//TODO: Set up debugging for Google Test
 namespace sre
 {
     /**
      * The main engine responsible for running the game.
-     * The engine is handled by the EngineManager class, cannot be created directly.
-     * For engine creation and cleanup, see the documentation for the EngineManager class.
+     * Creation, access and cleanup of the engine is handled by the EngineManager, which must first be created by the user.
+     * See the documentation for the EngineManager class for more details.
      * Before calling the run() function to start the game loop, the engine must be initialized using the initialize() function.
      * 
      * While single-object creation is not strictly enforced, 

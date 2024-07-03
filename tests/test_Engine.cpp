@@ -3,12 +3,30 @@
 
 using namespace sre;
 
-TEST(EngineTest, CreateEngine)
+TEST(EngineTestSuite, CreateEngine)
 {
     ASSERT_NO_THROW({
         EngineManager e;
         Engine& engine = e.create();});
    
+}
+
+TEST(EngineTestSuite, InitializeEngine)
+{
+    ASSERT_NO_THROW({
+        EngineManager e;
+        Engine& engine = e.create();
+        engine.initialize("TestName");
+    });
+}
+
+TEST(EngineTestSuite, DestroyEngine)
+{
+    ASSERT_NO_THROW({
+        EngineManager e;
+        Engine& engine = e.create();
+        e.destroy();
+    });
 }
 
 int main(int argc, char **argv) {
