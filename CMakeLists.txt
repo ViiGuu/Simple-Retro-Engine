@@ -50,6 +50,14 @@ include_directories(include)
         message(FATAL_ERROR "SDL2 not found!")
     endif()
 
+    if (WIN32)
+    add_custom_command(
+        TARGET SRE2 POST_BUILD
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:SDL2::SDL2>" "$<TARGET_FILE_DIR:SRE2>"
+        VERBATIM
+    )
+    endif()
+
     find_package(SDL2_ttf CONFIG REQUIRED)
     if(SDL2_ttf_FOUND)
         target_link_libraries(SRE2 PUBLIC $<IF:$<TARGET_EXISTS:SDL2_ttf::SDL2_ttf>,SDL2_ttf::SDL2_ttf,SDL2_ttf::SDL2_ttf-static>)

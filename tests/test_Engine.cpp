@@ -8,7 +8,7 @@ TEST(EngineTest, CreateEngine)
 {
     ASSERT_NO_THROW({
         EngineManager engineManager;
-        // Engine& engine = engineManager.create();
+        Engine& engine = engineManager.create();
         });
 
 }
