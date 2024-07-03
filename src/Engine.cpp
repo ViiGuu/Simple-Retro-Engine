@@ -40,12 +40,16 @@ namespace sre
 
     Engine::~Engine()
     {
-        SDL_DestroyRenderer(renderer);
-        renderer = nullptr;
-        SDL_DestroyWindow(window);
-        window = nullptr;
-        Mix_CloseAudio();
-        TTF_Quit();
+        if(isInitialized())
+        {
+            SDL_DestroyRenderer(renderer);
+            renderer = nullptr;
+            SDL_DestroyWindow(window);
+            window = nullptr;
+            Mix_CloseAudio();
+            TTF_Quit();
+        }
+        
         SDL_Quit();
     }
 
