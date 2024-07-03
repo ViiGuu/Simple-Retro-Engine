@@ -82,5 +82,26 @@
         "chrono": "cpp",
         "xhash": "cpp",
         "xtree": "cpp"
+    },
+    "cmake.configureSettings": {
+        "CMAKE_BUILD_TYPE": "Debug"
+    },
+    "cmake.defaultVariants": {
+        "buildType": {
+            "default": "debug",
+            "description": "The build type.",
+            "choices": {
+                "debug": {
+                    "short": "Debug",
+                    "long": "Disable optimizations - include debug information",
+                    "buildType": "Debug"
+                },
+                "release": {
+                    "short": "Release",
+                    "long": "Optimize for speed - exclude debug information",
+                    "buildType": "Release"
+                }
+            }
+        }
     }
 }

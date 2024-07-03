@@ -2,15 +2,27 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
             "type": "shell",
-            "command": "cmake --build build --target all",
+            "label": "cmake build",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+                "--config",
+                "Debug",
+                "--target",
+                "all"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "problemMatcher": ["$gcc"],
-            "detail": "Generated task by Debugger."
+            }
         }
     ]
 }
