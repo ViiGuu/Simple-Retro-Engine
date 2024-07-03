@@ -39,16 +39,6 @@ namespace sre
 
                 managed.reset();
             }
-
-            Engine& get() const override
-            {
-                if (!managed) 
-                {
-                    throw std::runtime_error("Object not created");
-                }
-
-                return *managed;
-            }
     };
 }
 

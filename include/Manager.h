@@ -14,7 +14,7 @@ class Manager
     public:
         virtual T& create() = 0;
         virtual void destroy() = 0;
-        virtual T& get () const = 0;
+        virtual T& get () const {throw std::runtime_error("get() not implemented for this Manager");}
         Manager(const Manager&) = delete;
         Manager& operator=(const Manager&) = delete;
         

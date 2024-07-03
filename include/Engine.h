@@ -13,6 +13,8 @@
 #include <vector>
 #include "Manager.h"
 
+
+//TODO: Implement an Entity Component System and Scene class
 namespace sre
 {
     /**
