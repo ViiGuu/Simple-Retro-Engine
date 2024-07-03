@@ -1,22 +1,27 @@
 #include <gtest/gtest.h>
 #include "EngineManager.h"
+#include <SDL.h>
 
 using namespace sre;
+
+
+class EngineTest : public ::testing::Test {
+protected:
+    EngineManager engineManager;
+    Engine& engine = engineManager.create();
+};
 
 TEST(EngineTestSuite, CreateEngine)
 {
     ASSERT_NO_THROW({
         EngineManager e;
         Engine& engine = e.create();});
-   
 }
 
-TEST(EngineTestSuite, InitializeEngine)
+TEST_F(EngineTest, InitializeEngine)
 {
     ASSERT_NO_THROW({
-        EngineManager e;
-        Engine& engine = e.create();
-        engine.initialize("TestName");
+        EngineTest::engine.initialize("TestName");
     });
 }
 

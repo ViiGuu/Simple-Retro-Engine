@@ -4,6 +4,10 @@
 #include <memory>
 #include <stdexcept>
 
+/**
+ * Interface for managing the creation and destruction of an object, with an internal smart pointer
+ * for automatic memory management.
+ */
 template <typename T>
 class Manager
 {

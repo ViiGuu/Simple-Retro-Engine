@@ -19,7 +19,7 @@ namespace sre
      * Before calling the run() function to start the game loop, the engine must be initialized using the initialize() function.
      * 
      * While single-object creation is not strictly enforced, 
-     * creating more than one Engine object can lead to undefined behaviour and should be reserved for testing purposes.
+     * creating more than one Engine object is redundant and can lead to undefined behaviour.
      * 
      * @author Viggo Gustafsson
      */
@@ -27,6 +27,7 @@ namespace sre
     {
         public:
             ~Engine();
+            bool isInitialized() { return initialized; }
             /** Initializes the engine with the given window name.
              * 
              * @param windowName The name of the window.
@@ -40,7 +41,8 @@ namespace sre
         protected:
         private:
             friend class EngineManager;
-            Engine() {}
+            Engine() : initialized(false) {}
+            bool initialized;
              /** Updates the various behaviours in the game. */
             void update();
     };
