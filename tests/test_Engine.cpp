@@ -21,16 +21,16 @@ TEST(EngineTestSuite, CreateEngine)
 TEST_F(EngineTest, InitializeEngine)
 {
     ASSERT_NO_THROW({
-        EngineTest::engine.initialize("TestName");
+        engine.initialize("TestName");
     });
+
+    ASSERT_TRUE(EngineTest::engine.isInitialized());
 }
 
-TEST(EngineTestSuite, DestroyEngine)
+TEST_F(EngineTest, DestroyEngine)
 {
     ASSERT_NO_THROW({
-        EngineManager e;
-        Engine& engine = e.create();
-        e.destroy();
+        engineManager.destroy();
     });
 }
 

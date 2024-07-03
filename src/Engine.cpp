@@ -10,7 +10,8 @@ namespace sre
             std::cerr << "Failed to initialize SDL. SDL error: " << SDL_GetError() << std::endl;
             exit(-1);
         }
-
+        
+        initialized = true;
     }
 
     void Engine::run()
