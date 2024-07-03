@@ -33,6 +33,7 @@ include_directories(include)
 
 add_subdirectory(googletest) # Add GoogleTest submodule
 enable_testing() # Enable testing
+include_directories(${CMAKE_SOURCE_DIR}/googletest/googlemock/include) #include GoogleMock
 
      # Function to create a test suite for a class
 function(add_test_suite class_name)

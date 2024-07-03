@@ -3,7 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include <SDL.h>
+#include <SDL2/SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
 #include <atomic>
 #include <stdexcept>
 #include <memory>
@@ -32,7 +35,7 @@ namespace sre
              * 
              * @param windowName The name of the window.
              */
-            void initialize(std::string windowName);
+            void initialize(const std::string windowName);
 
             /** Function responsible for running the main game loop. */
             void run();
@@ -40,13 +43,14 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
+            SDL_Window* window;
+            SDL_Renderer* renderer;
             friend class EngineManager;
             Engine() : initialized(false) {}
             bool initialized;
              /** Updates the various behaviours in the game. */
             void update();
     };
-
 }
 
 

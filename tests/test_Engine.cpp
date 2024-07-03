@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include "EngineManager.h"
 #include <SDL.h>
 
 using namespace sre;
-
 
 class EngineTest : public ::testing::Test {
 protected:
