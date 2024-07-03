@@ -4,14 +4,23 @@ cmake_minimum_required(VERSION 3.10)
 project(SRE2)
 
 # Detect and set vcpkg toolchain file
-#if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "vcpkg toolchain file")
-#endif()
+endif()
 
 
 # Specify the C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Set build type to debug
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+endif()
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 
 # Add library
 add_library(SRE2 SHARED 
@@ -25,13 +34,15 @@ include_directories(include)
     add_subdirectory(googletest) # Add GoogleTest submodule
     enable_testing() # Enable testing
 
-    set(TEST_FILES # Add the test files here
-        tests/test_Engine.cpp
-        #Add additional tests
-    )
-    add_executable(SRE2Tests ${TEST_FILES}) # Create the test executable
-    target_link_libraries(SRE2Tests gtest gtest_main SRE2) # Link Google Test libraries and your library
-    add_test(NAME SRE2TestSuite COMMAND SRE2Tests) # Add tests
+     # Function to create a test suite for a class
+     function(add_test_suite class_name)
+     set(test_name "${class_name}Tests")
+     add_executable(${test_name} tests/test_${class_name}.cpp)
+     target_link_libraries(${test_name} gtest gtest_main SRE2)
+     add_test(NAME ${class_name}TestSuite COMMAND ${test_name})
+ endfunction()
+
+ add_test_suite(Engine)
 
 
 ##### INCLUDE AND LINK LIBRARIES #####
@@ -45,6 +56,13 @@ include_directories(include)
                 $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
         )
         message(STATUS "SDL2 found!")
+        if (WIN32)
+            add_custom_command(
+                TARGET SRE2 POST_BUILD
+                COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:SDL2::SDL2>" "$<TARGET_FILE_DIR:SRE2>"
+                VERBATIM
+            )
+        endif()
     else()
         message(FATAL_ERROR "SDL2 not found!")
     endif()

@@ -41,7 +41,7 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
-            
+            friend class EngineManager;
             Engine() {}
              /** Updates the various behaviours in the game. */
             void update();
