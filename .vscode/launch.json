@@ -20,7 +20,7 @@
                 }
             ],
             "preLaunchTask": "build",
-            "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe", //TODO: look over better pathing
+            "miDebuggerPath": "${GDB_DIR}/gdb.exe", //TODO: look over better pathing
             "logging": {
                 "trace": true,
                 "traceResponse": true,
@@ -28,7 +28,7 @@
             },
             "windows": {
                 "preLaunchTask": "cmake build",
-                "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe"
+                "miDebuggerPath": "${GDB_DIR}/gdb.exe"
             }
         }
     ]
