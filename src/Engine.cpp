@@ -2,6 +2,24 @@
 
 namespace sre
 {
+
+    SDL_Window& Engine::getWindow()
+    {
+        if (window == nullptr)
+        {
+            throw std::runtime_error("Window has not been initialized");
+        }
+        return *window;
+    }
+
+    SDL_Renderer& Engine::getRenderer()
+    {
+        if (renderer == nullptr)
+        {
+            throw std::runtime_error("Renderer has not been initialized");
+        }
+        return *renderer;
+    }
     void Engine::initialize(const std::string windowName)
     {
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 

@@ -32,6 +32,8 @@ namespace sre
     {
         public:
             ~Engine();
+            SDL_Window& getWindow();
+            SDL_Renderer& getRenderer();
             bool isInitialized() { return initialized; }
             /** Initializes the engine with the given window name.
              * 
@@ -48,7 +50,7 @@ namespace sre
             SDL_Window* window;
             SDL_Renderer* renderer;
             friend class EngineManager;
-            Engine() : initialized(false) {}
+            Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
             bool initialized;
              /** Updates the various behaviours in the game. */
             void update();
