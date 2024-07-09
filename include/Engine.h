@@ -14,7 +14,8 @@
 #include "Manager.h"
 
 
-//TODO: Implement an Entity Component System and Scene class
+//TODO: Implement a Scene class
+//TODO: Implement an Entity Component System
 namespace sre
 {
     /**
@@ -47,13 +48,14 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
+            //std::unique_ptr<Scene> scene;
             SDL_Window* window;
             SDL_Renderer* renderer;
             friend class EngineManager;
             Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
             bool initialized;
              /** Updates the various behaviours in the game. */
-            void update();
+            void update(); //calls scene.update();
     };
 }
 
