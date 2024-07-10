@@ -48,7 +48,7 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
-            //std::unique_ptr<Scene> scene;
+            //std::unique_ptr<Scene> scene; OR std::shared_ptr<Scene> scene; because both the SceneNavigator and Engine will point to the same scene.
             SDL_Window* window;
             SDL_Renderer* renderer;
             friend class EngineManager;
