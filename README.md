@@ -1,6 +1,7 @@
 Working with the project on a new pc:
 - When cloning the repository you need to first create a build directory in the project folder before building the project with Cmake.
 - Make sure VCPKG is installed on the system. Set VCPKG_ROOT and Path in Environment Variables.
+    - Install packages with VCPKG.
 - The project uses GDB for debugging. Set the directory of gdb.exe to GDB_DIR in Environment Variables.
 
 Adding tests:
