@@ -12,6 +12,7 @@
 #include <memory>
 #include <vector>
 #include "Manager.h"
+#include "AbstractScene.h"
 
 
 //TODO: Implement a Scene class
@@ -48,7 +49,8 @@ namespace sre
             Engine operator= (const Engine&) = delete;
         protected:
         private:
-            //std::unique_ptr<Scene> scene; OR std::shared_ptr<Scene> scene; because both the SceneNavigator and Engine will point to the same scene.
+            //ensure that a Scene is present before run() is called
+            std::unique_ptr<AbstractScene> currentScene;
             SDL_Window* window;
             SDL_Renderer* renderer;
             friend class EngineManager;

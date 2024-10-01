@@ -83,7 +83,10 @@
         "csignal": "cpp",
         "forward_list": "cpp",
         "unordered_set": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp",
+        "fstream": "cpp"
     },
     "cmake.configureSettings": {
         "CMAKE_BUILD_TYPE": "Debug"
