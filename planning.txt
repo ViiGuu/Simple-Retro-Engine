@@ -1,3 +1,6 @@
+UML diagram:
+https://app.diagrams.net/#G1Zq7KnVFQGrS-DaFfQBvCSyoCqYmzrMSx#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D
+
 Scene Class:
 
 Contains a collection of Entities
@@ -10,23 +13,12 @@ Holds a pointer or reference to the current active Scene
 Calls the active Scene's update and draw methods in its main loop
 
 SceneNavigator Class:
-
 Manages a collection of Scenes
 Has methods to add, remove, and switch between Scenes
 Communicates with the Engine to set the active Scene
 
-This structure allows for:
-
-Easy scene transitions (e.g., moving from a menu to a game level)
-Separation of game logic (in Scenes) from engine logic
-Potential for scene preloading and unloading to manage resources
-
-The relationship could work like this:
-
-The Engine has a pointer to the SceneNavigator
-The SceneNavigator has a method to set the active Scene in the Engine
-The Engine calls methods on the active Scene each frame
-
-This design gives you flexibility and maintainability. You can easily add new Scenes without modifying the Engine, and the SceneNavigator can handle complex scene transitions if needed.
-One thing to consider is whether you want the Engine to be aware of the SceneNavigator, or if you want to keep it focused solely on rendering the active Scene. Both approaches have merits, and the choice depends on your specific needs and how you want to structure the rest of your game logic.
-Your approach seems well-thought-out and aligns with good practices in game engine design. It provides a solid foundation that you can build upon as your engine grows in complexity.
+RendererI:
+encapsulates logic for the rendering,
+allows composition for sprites/components that should be rendered,
+instead of passing the renderer along through several layers of abstraction
+(i.e engine -> scenenavigator -> scene -> entity -> visual component)

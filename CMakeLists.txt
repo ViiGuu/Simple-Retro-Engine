@@ -44,6 +44,7 @@ function(add_test_suite class_name)
  endfunction()
 
  add_test_suite(Engine)
+ add_test_suite(Scene)
 
 
 ##### INCLUDE AND LINK LIBRARIES #####

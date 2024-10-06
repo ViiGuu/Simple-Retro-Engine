@@ -12,7 +12,7 @@
 #include <memory>
 #include <vector>
 #include "Manager.h"
-#include "AbstractScene.h"
+#include "SceneInterface.h"
 
 
 //TODO: Implement a Scene class
@@ -50,7 +50,7 @@ namespace sre
         protected:
         private:
             //ensure that a Scene is present before run() is called
-            std::unique_ptr<AbstractScene> currentScene;
+            std::unique_ptr<SceneInterface> scene;
             SDL_Window* window;
             SDL_Renderer* renderer;
             friend class EngineManager;
@@ -58,6 +58,7 @@ namespace sre
             bool initialized;
              /** Updates the various behaviours in the game. */
             void update(); //calls scene.update();
+            void render();
     };
 }
 
