@@ -50,7 +50,7 @@ namespace sre
         protected:
         private:
             //ensure that a Scene is present before run() is called
-            std::unique_ptr<SceneInterface> scene;
+            std::unique_ptr<int> scenes; //placeholder value
             SDL_Window* window;
             SDL_Renderer* renderer;
             friend class EngineManager;

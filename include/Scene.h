@@ -1,9 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "SceneI.h"
+#include "SceneInterface.h"
 
-class Scene : public SceneI<int> //placeholder data type
+class Scene : public SceneInterface<int> //placeholder data type
 {
     public:
     void update() override; //updates all entities
@@ -13,7 +13,8 @@ class Scene : public SceneI<int> //placeholder data type
     void makeActive(int entity) override;
     void makeInactive(int entity) override;
     protected:
-    Scene() {}
+    Scene() = default;
+    ~Scene() = default;
     private:
     std::vector<int> entities; //placeholder data type
 };

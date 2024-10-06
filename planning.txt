@@ -3,22 +3,23 @@ https://app.diagrams.net/#G1Zq7KnVFQGrS-DaFfQBvCSyoCqYmzrMSx#%7B%22pageId%22%3A%
 
 Scene Class:
 
-Contains a collection of Entities
-Possibly has its own update and draw methods
-
+    Contains a collection of Entities
+    Possibly has its own update and draw methods
 
 Engine Class:
 
-Holds a pointer or reference to the current active Scene
-Calls the active Scene's update and draw methods in its main loop
+    Holds a pointer or reference to the current active Scene
+    Calls the active Scene's update and draw methods in its main loop
 
 SceneNavigator Class:
-Manages a collection of Scenes
-Has methods to add, remove, and switch between Scenes
-Communicates with the Engine to set the active Scene
 
-RendererI:
-encapsulates logic for the rendering,
-allows composition for sprites/components that should be rendered,
-instead of passing the renderer along through several layers of abstraction
-(i.e engine -> scenenavigator -> scene -> entity -> visual component)
+    Manages a collection of Scenes
+    Has methods to add, remove, and set active Scenes
+    engine has a SceneNavigator, so it always renders the active scene
+
+RendererInterface + Renderer implementation:
+
+    encapsulates logic for the rendering,
+    allows composition for sprites/components that should be rendered,
+    instead of passing the renderer along through several layers of abstraction
+    (i.e engine -> scenenavigator -> scene -> entity -> visual component)

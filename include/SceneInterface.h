@@ -6,7 +6,6 @@ template <typename T>
 class SceneInterface
 {
     public:
-        virtual ~SceneInterface() {}
         //maybe protected so only the scenenavigator can access?
         virtual void update() = 0;
         virtual void render() = 0;
@@ -16,7 +15,8 @@ class SceneInterface
         virtual void makeActive(T entity) = 0;
         virtual void makeInactive(T entity) = 0;
     protected:
-        SceneInterface() {}
+        SceneInterface() = default;
+        virtual ~SceneInterface() = default;
     private:
     std::vector<T> entities;
 };

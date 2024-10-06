@@ -7,6 +7,8 @@ TEST(SceneTest, TestFile)
     EXPECT_TRUE(true);
 }
 
+//add tests once there is concrete functionality to test
+
 //test edge cases for each functionality
 
 //test creation
