@@ -24,7 +24,8 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
 
 # Add library
 add_library(SRE2 SHARED 
-    src/Engine.cpp)
+    src/Engine.cpp
+    src/EngineManager.cpp)
 
 # Include directories
 include_directories(include)

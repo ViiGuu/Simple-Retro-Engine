@@ -3,6 +3,7 @@
 
 #include "Engine.h"
 #include "Manager.h"
+#include "Renderer.h"
 #include <memory>
 
 namespace sre
@@ -19,26 +20,11 @@ namespace sre
         public:
             EngineManager() = default;
             ~EngineManager() = default;
-            Engine& create() override
-            {
-                if (managed)
-                {
-                    throw std::runtime_error("Object already created");
-                }
-                //consider make_unique if compilation allows
-                managed = std::unique_ptr<Engine>(new Engine());
-                return *managed; 
-            }
-
-            void destroy() override
-            {
-                if (!managed) 
-                {
-                    throw std::runtime_error("Object not created");
-                }
-
-                managed.reset();
-            }
+            Engine& create() override;
+            void destroy() override;
+        private:
+        //smart pointer to Window or similar
+        std::unique_ptr<Renderer> renderer;
     };
 }
 

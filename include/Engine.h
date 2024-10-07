@@ -12,11 +12,10 @@
 #include <memory>
 #include <vector>
 #include "Manager.h"
-#include "SceneInterface.h"
+#include "SceneNavigatorInterface.h"
+#include "RendererInterface.h"
 
 
-//TODO: Implement a Scene class
-//TODO: Implement an Entity Component System
 namespace sre
 {
     /**
@@ -37,28 +36,27 @@ namespace sre
             SDL_Window& getWindow();
             SDL_Renderer& getRenderer();
             bool isInitialized() { return initialized; }
-            /** Initializes the engine with the given window name.
-             * 
-             * @param windowName The name of the window.
-             */
             void initialize(const std::string windowName);
-
-            /** Function responsible for running the main game loop. */
             void run();
             Engine(const Engine&) = delete; 
             Engine operator= (const Engine&) = delete;
         protected:
+            void setRenderer(RendererInterface& ren);
         private:
             //ensure that a Scene is present before run() is called
-            std::unique_ptr<int> scenes; //placeholder value
+            std::unique_ptr<SceneNavigatorInterface> scenes;
             SDL_Window* window;
+            //remove once Renderer class has been implemented
+            // or set to ren.get() ?
+            // probably remove and keep renderer hidden from engine
             SDL_Renderer* renderer;
-            friend class EngineManager;
-            Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
+            RendererInterface& ren;
+            Engine(RendererInterface* rend) : window(nullptr), renderer(nullptr), initialized(false), ren(*rend) {}
             bool initialized;
-             /** Updates the various behaviours in the game. */
             void update(); //calls scene.update();
             void render();
+
+            friend class EngineManager;
     };
 }
 
