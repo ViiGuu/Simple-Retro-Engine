@@ -14,6 +14,7 @@
 #include "Manager.h"
 #include "SceneNavigatorInterface.h"
 #include "RendererInterface.h"
+#include "WindowInterface.h"
 
 
 namespace sre
@@ -33,10 +34,10 @@ namespace sre
     {
         public:
             ~Engine();
-            SDL_Window& getWindow();
-            SDL_Renderer& getRenderer();
+            WindowInterface& getWindow();
+            RendererInterface& getRenderer();
             bool isInitialized() { return initialized; }
-            void initialize(const std::string windowName);
+            void initialize();
             void run();
             Engine(const Engine&) = delete; 
             Engine operator= (const Engine&) = delete;
@@ -45,13 +46,14 @@ namespace sre
         private:
             //ensure that a Scene is present before run() is called
             std::unique_ptr<SceneNavigatorInterface> scenes;
-            SDL_Window* window;
+            // SDL_Window* window;
+            WindowInterface* window;
             //remove once Renderer class has been implemented
             // or set to ren.get() ?
             // probably remove and keep renderer hidden from engine
-            SDL_Renderer* renderer;
-            RendererInterface& ren;
-            Engine(RendererInterface* rend) : window(nullptr), renderer(nullptr), initialized(false), ren(*rend) {}
+            // SDL_Renderer* renderer;
+            RendererInterface* renderer;
+            Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
             bool initialized;
             void update(); //calls scene.update();
             void render();

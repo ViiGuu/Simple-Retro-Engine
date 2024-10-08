@@ -1,7 +1,7 @@
 #ifndef WINDOW_INTERFACE_H
 #define WINDOW_INTERFACE_H
 
-#include <SDL2/SDL.h>
+#include <iostream>
 
 namespace sre
 {
@@ -10,7 +10,7 @@ namespace sre
         public:
         WindowInterface() = default;
         ~WindowInterface() = default;
-        virtual void initialize() = 0;
+        virtual void initialize(std::string windowName) = 0;
         protected:
         private:
     };

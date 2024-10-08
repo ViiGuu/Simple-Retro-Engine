@@ -1,5 +1,7 @@
 
 //TODO: Move renderer logic from Engine to Renderer
+//TODO: implement Window Class
+//TODO: sort out Window -> Renderer initialization in EngineManager
 
 UML diagram:
 https://app.diagrams.net/#G1Zq7KnVFQGrS-DaFfQBvCSyoCqYmzrMSx#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D

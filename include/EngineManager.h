@@ -4,8 +4,10 @@
 #include "Engine.h"
 #include "Manager.h"
 #include "Renderer.h"
+#include "Window.h"
 #include <memory>
 
+//TODO: break out Render and Window creation into their own functions, document the intended order of creation.
 namespace sre
 {
     /**
@@ -25,6 +27,8 @@ namespace sre
         private:
         //smart pointer to Window or similar
         std::unique_ptr<Renderer> renderer;
+        std::unique_ptr<Window> window;
+
     };
 }
 
