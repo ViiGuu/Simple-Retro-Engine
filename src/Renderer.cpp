@@ -10,22 +10,17 @@ namespace sre
 
     void Renderer::update()
     {
-
+        SDL_RenderClear(renderer);
     }
 
     void Renderer::draw()
     {
-
+        SDL_RenderPresent(renderer);
     }
 
-    void Renderer::renderPresent()
+    void Renderer::drawEntity(SDL_Texture* texture, SDL_Rect* rect)
     {
-
-    }
-
-    void Renderer::renderClear()
-    {
-        
+        SDL_RenderCopy(renderer, texture, NULL, rect);
     }
 
     void Renderer::initialize(SDL_Window* window)

@@ -12,12 +12,11 @@ namespace sre
         public:
         Renderer() = default;
         ~Renderer();
+        SDL_Renderer& getRenderer() {return *renderer;}
         void update() override;
         void draw() override;
-        void renderPresent() override;
-        void renderClear() override;
-        //needs reference to Window, call from EngineManager AFTER creating window
-        //alternatively pass Window through constructor and skip initialize
+        //TODO: Implement observer that calls drawEntity
+        void drawEntity(SDL_Texture* texture, SDL_Rect* rect);
         void initialize(SDL_Window* window);
         protected:
         private:

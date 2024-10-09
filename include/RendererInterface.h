@@ -4,7 +4,6 @@
 
 namespace sre
 {
-    //TODO: create getter and use in EngineManager
     class RendererInterface
     {
         public:
@@ -12,8 +11,6 @@ namespace sre
             ~RendererInterface() = default;
             virtual void update() = 0;
             virtual void draw() = 0;
-            virtual void renderPresent() = 0;
-            virtual void renderClear() = 0;
         protected:
         private:
     };
