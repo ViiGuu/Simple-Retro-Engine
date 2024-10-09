@@ -21,13 +21,30 @@ namespace sre
         return *renderer;
     }
 
+    bool Engine::isInitialized()
+    {
+        if (initialized == true && window != nullptr && renderer != nullptr)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void Engine::setRenderer(RendererInterface& ren)
     {
         renderer = &ren;
     }
 
+    void Engine::setWindow(WindowInterface& win)
+    {
+        window = &win;
+    }
+
     void Engine::initialize()
     {
+        if(isInitialized())
+            return;
+
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
         {
             std::cerr << "Failed to initialize SDL! SDL error: " << SDL_GetError() << std::endl;

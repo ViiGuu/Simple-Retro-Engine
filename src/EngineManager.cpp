@@ -8,6 +8,7 @@ namespace sre
         {
             throw std::runtime_error("Object already created");
         }
+
         managed = std::unique_ptr<Engine>(new Engine());
         managed->initialize();
 
@@ -18,29 +19,22 @@ namespace sre
         renderer->initialize(&window->getWindow());
         
         managed->setRenderer(*renderer);
+        managed->setWindow(*window);
         return *managed; 
     }
 
     void EngineManager::destroy()
     {
         if (!managed) 
-        {
             throw std::runtime_error("Engine not created");
-        }
-
         managed.reset();
 
         if (!window)
-        {
             throw std::runtime_error("Window not created");
-        }
-
         window.reset();
 
         if (!renderer)
-        {
             throw std::runtime_error("Window not created");
-        }
 
         renderer.reset();
     }

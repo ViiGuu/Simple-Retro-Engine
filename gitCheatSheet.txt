@@ -18,3 +18,10 @@ merging branch with main:
 
     git push origin main
 
+switching between branches:
+
+    REMEMBER TO MERGE FIRST:
+
+    git checkout X
+    
+    git merge main

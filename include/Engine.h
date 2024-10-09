@@ -36,13 +36,14 @@ namespace sre
             ~Engine();
             WindowInterface& getWindow();
             RendererInterface& getRenderer();
-            bool isInitialized() { return initialized; }
-            void initialize();
+            bool isInitialized();
             void run();
             Engine(const Engine&) = delete; 
             Engine operator= (const Engine&) = delete;
         protected:
             void setRenderer(RendererInterface& ren);
+            void setWindow(WindowInterface& win);
+            void initialize();
         private:
             //ensure that a Scene is present before run() is called
             std::unique_ptr<SceneNavigatorInterface> scenes;
