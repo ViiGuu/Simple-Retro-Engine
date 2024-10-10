@@ -11,6 +11,7 @@ namespace sre
             ~RendererInterface() = default;
             virtual void update() = 0;
             virtual void draw() = 0;
+            virtual void drawEntity(void* texture, void* rect) = 0;
         protected:
         private:
     };
