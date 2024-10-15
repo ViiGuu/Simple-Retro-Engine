@@ -11,16 +11,16 @@ namespace sre
     class Subject
     {
         public:
-            Subject() = delete;
             Subject(const Subject& other) = delete;
-            Subject operator=(const Subject& other) = delete;
+            Subject& operator=(const Subject& other) = delete;
+            const std::vector<Observer*>& getObservers();
             virtual void add(Observer* obs);
-            virtual void remove(const Observer& obs);
+            virtual void remove(Observer* obs);
             virtual void notify();
         protected:
-        private:
+            Subject() : observers() {};
             std::vector<Observer*> observers;
-
+        private:
     };
 }
 

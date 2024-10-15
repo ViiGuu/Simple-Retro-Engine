@@ -9,7 +9,7 @@ namespace sre
     class Entity
     {
         public:
-            //maybe not delete on these or maybe yes? i mean it should be an interface-ish
+            //set to protected default so subclasses can use.
            Entity() = delete;
            Entity(const Entity&) = delete;
            Entity& operator=(const Entity& other) = delete;

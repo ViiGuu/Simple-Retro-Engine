@@ -2,7 +2,12 @@
 
 namespace sre
 {
-    void Subject::remove(const Observer& obs)
+
+    const std::vector<Observer*>& Subject::getObservers() 
+    {
+        return observers;
+    }
+    void Subject::remove(Observer* obs)
     {
         observers.erase(
             std::remove(observers.begin(), observers.end(), obs), 
@@ -11,7 +16,9 @@ namespace sre
 
     void Subject::add(Observer* obs)
     {
-        observers.push_back(obs);
+        int find = std::count(observers.begin(), observers.end(), obs);
+        if(find == 0)
+            observers.push_back(obs);
     }
 
     void Subject::notify()
