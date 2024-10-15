@@ -28,3 +28,7 @@ rules.ninja
 # Ignore other system-specific files
 .DS_Store
 Thumbs.db
+
+#ignore misc text files
+gitCheatSheet.txt
+planning.txt
