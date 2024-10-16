@@ -9,6 +9,7 @@ namespace sre
     /**
      * Interface for holding a collection of scenes as well as holding a pointer to the active scene.
      */
+    //TODO fix this up
     class SceneNavigatorInterface
     {
         public:

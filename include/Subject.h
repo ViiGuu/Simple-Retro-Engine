@@ -4,10 +4,10 @@
 #include "Observer.h"
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
 
 namespace sre
 {
-    //TODO: test Subject functionality
     class Subject
     {
         public:

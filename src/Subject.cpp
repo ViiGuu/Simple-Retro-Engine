@@ -7,7 +7,7 @@ namespace sre
     {
         return observers;
     }
-    void Subject::remove(Observer* obs)
+    void Subject::remove(Observer* obs) //do i also need to clean up the removed observer itself?
     {
         observers.erase(
             std::remove(observers.begin(), observers.end(), obs), 
@@ -16,9 +16,12 @@ namespace sre
 
     void Subject::add(Observer* obs)
     {
-        int find = std::count(observers.begin(), observers.end(), obs);
-        if(find == 0)
-            observers.push_back(obs);
+        if(obs != nullptr)
+        {
+            int find = std::count(observers.begin(), observers.end(), obs);
+            if(find == 0)
+                observers.push_back(obs);
+        }
     }
 
     void Subject::notify()

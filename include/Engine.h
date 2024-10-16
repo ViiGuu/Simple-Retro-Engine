@@ -26,7 +26,7 @@ namespace sre
      * Before calling the run() function to start the game loop, the engine must be initialized using the initialize() function.
      * 
      * While single-object creation is not strictly enforced, 
-     * creating more than one Engine object is redundant and can lead to undefined behaviour.
+     * creating more than one Engine object is redundant and will lead to undefined behaviour.
      * 
      * @author Viggo Gustafsson
      */
@@ -47,16 +47,14 @@ namespace sre
         private:
             //ensure that a Scene is present before run() is called
             std::unique_ptr<SceneNavigatorInterface> scenes;
-            // SDL_Window* window;
-            WindowInterface* window;
-            //remove once Renderer class has been implemented
-            // or set to ren.get() ?
-            // probably remove and keep renderer hidden from engine
-            // SDL_Renderer* renderer;
+            WindowInterface* window; //these 2 might be redundant to keep in Engine
             RendererInterface* renderer;
             Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
             bool initialized;
-            void update(); //calls scene.update();
+            //TODO look over how the different parts should interact in general...
+            //TODO scenes.getActive().update(); or something
+            void update();
+            //might not be relevant, EITHER move to Scene, or figure out how to decouple more and just have a RenderingSystem handle it
             void render();
 
             friend class EngineManager;

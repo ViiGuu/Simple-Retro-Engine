@@ -9,6 +9,8 @@ namespace sre
             virtual ~SystemInterface() = default;
             //look over args
             virtual void update() = 0;
+        private:
+
     };
 }
 

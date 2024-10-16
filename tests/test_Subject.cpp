@@ -4,52 +4,71 @@
 #include "Observer.h"
 #include "Subject.h"
 
-class TestObserver : public sre::Observer
+class TestObserver : public sre::Observer<std::string>
 {
     public: 
         TestObserver() : testOutput("nothing") {};
-        void update() override {testOutput = "updated";}
+        void update(std::string value) override {testOutput = "updated";}
         std::string getOutput(){ return testOutput;}
     private:
         std::string testOutput;
 
 };
 
-class TestSubject : public sre::Subject
+class TestSubject : public sre::Subject<std::string>
 {
     public:
         TestSubject() = default;
         ~TestSubject() = default;
 };
 
-class ObserverSubjectTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        subject = new TestSubject();
-        observer1 = new TestObserver();
-        observer2 = new TestObserver();
-    }
+class ObserverSubjectTest : public ::testing::Test 
+{
+    protected:
+        void SetUp() override 
+        {
+            subject = new TestSubject();
+            observer1 = new TestObserver();
+            observer2 = new TestObserver();
+        }
 
-    void TearDown() override {
-        delete subject;
-        subject = nullptr;
-        delete observer1;
-        observer1 = nullptr;
-        delete observer2;
-        observer2 = nullptr;
-    }
+        void TearDown() override 
+        {
+            delete subject;
+            subject = nullptr;
+            delete observer1;
+            observer1 = nullptr;
+            delete observer2;
+            observer2 = nullptr;
+        }
 
-    TestSubject* subject;
-    TestObserver* observer1;
-    TestObserver* observer2;
+        TestSubject* subject;
+        TestObserver* observer1;
+        TestObserver* observer2;
 };
 
-TEST_F(ObserverSubjectTest, AddObserver) {
+TEST_F(ObserverSubjectTest, AddObserver) 
+{
     subject->add(observer1);
     EXPECT_EQ(1, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, RemoveObserver) {
+TEST_F(ObserverSubjectTest, AddSameObserverTwice) 
+{
+    subject->add(observer1);
+    subject->add(observer1);
+    EXPECT_EQ(1, subject->getObservers().size());
+}
+
+TEST_F(ObserverSubjectTest, AddNullptr)
+{
+    TestObserver* nullObs = nullptr;
+    subject->add(nullObs);
+    EXPECT_EQ(0, subject->getObservers().size());
+}
+
+TEST_F(ObserverSubjectTest, RemoveObserver) 
+{
     subject->add(observer1);
     subject->add(observer2);
     EXPECT_EQ(2, subject->getObservers().size());
@@ -58,7 +77,18 @@ TEST_F(ObserverSubjectTest, RemoveObserver) {
     EXPECT_EQ(1, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, NotifyObservers) {
+TEST_F(ObserverSubjectTest, RemoveNonexistentObserver) 
+{
+    subject->add(observer1);
+    EXPECT_EQ(1, subject->getObservers().size());
+
+    TestObserver* nonexistentObserver;
+    subject->remove(nonexistentObserver);
+    EXPECT_EQ(1, subject->getObservers().size());
+}
+
+TEST_F(ObserverSubjectTest, NotifyObservers) 
+{
     subject->add(observer1);
     subject->add(observer2);
 
@@ -71,21 +101,8 @@ TEST_F(ObserverSubjectTest, NotifyObservers) {
     EXPECT_EQ("updated", observer2->getOutput());
 }
 
-TEST_F(ObserverSubjectTest, RemoveNonexistentObserver) {
-    subject->add(observer1);
-    EXPECT_EQ(1, subject->getObservers().size());
 
-    TestObserver* nonexistentObserver;
-    subject->remove(nonexistentObserver);
-    EXPECT_EQ(1, subject->getObservers().size());
-}
-
-TEST_F(ObserverSubjectTest, AddSameObserverTwice) {
-    subject->add(observer1);
-    subject->add(observer1);
-    EXPECT_EQ(1, subject->getObservers().size());
-}
-
-TEST_F(ObserverSubjectTest, NotifyEmptyObserverList) {
+TEST_F(ObserverSubjectTest, NotifyEmptyObserverList) 
+{
     EXPECT_NO_THROW(subject->notify());
 }
