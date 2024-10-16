@@ -12,7 +12,7 @@ namespace sre
         public:
             Renderer() = default;
             ~Renderer();
-            SDL_Renderer& getRenderer() {return *renderer;}
+            inline SDL_Renderer& getRenderer() {return *renderer;}
             void update() override;
             void draw() override;
             //TODO: Implement observer that calls drawEntity, or some other sleek pattern

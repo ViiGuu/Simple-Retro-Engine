@@ -4,18 +4,18 @@
 #include "Observer.h"
 #include "Subject.h"
 
-class TestObserver : public sre::Observer<std::string>
+class TestObserver : public sre::Observer
 {
     public: 
         TestObserver() : testOutput("nothing") {};
-        void update(std::string value) override {testOutput = "updated";}
+        void update() override {testOutput = "updated";}
         std::string getOutput(){ return testOutput;}
     private:
         std::string testOutput;
 
 };
 
-class TestSubject : public sre::Subject<std::string>
+class TestSubject : public sre::Subject
 {
     public:
         TestSubject() = default;
