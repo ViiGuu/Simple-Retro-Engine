@@ -40,7 +40,7 @@ namespace sre
         SDL_RenderCopy(renderer, static_cast<SDL_Texture*>(texture), NULL, static_cast<SDL_Rect*>(rect));
     }
 
-    void Renderer::initialize(SDL_Window* window)
+    void Renderer::initialize(SDL_Window* window, SystemInterface* renderingSys)
     {
         renderer = (SDL_CreateRenderer(window, SDL_RENDERER_ACCELERATED, 0));
         if (!renderer)

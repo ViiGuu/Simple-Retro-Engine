@@ -1,20 +1,20 @@
-#include "Subject.h"
+#include "Observable.h"
 
 namespace sre
 {
 
-    const std::vector<Observer*>& Subject::getObservers() 
+    const std::vector<Observer*>& Observable::getObservers() 
     {
         return observers;
     }
-    void Subject::remove(Observer* obs) //do i also need to clean up the removed observer itself?
+    void Observable::remove(Observer* obs) //do i also need to clean up the removed observer itself?
     {
         observers.erase(
             std::remove(observers.begin(), observers.end(), obs), 
             observers.end());
     }
 
-    void Subject::add(Observer* obs)
+    void Observable::add(Observer* obs)
     {
         if(obs != nullptr)
         {
@@ -24,12 +24,12 @@ namespace sre
         }
     }
 
-    void Subject::notify()
+    void Observable::notify()
     {
        std::for_each(observers.begin(), observers.end(),
        [](Observer* obs)
        {
-        obs->update();
+        obs->update(); //this should have different args based on implementation
        });
     }
 }

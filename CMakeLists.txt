@@ -28,7 +28,9 @@ add_library(SRE2 SHARED
     src/EngineManager.cpp
     src/Window.cpp
     src/Renderer.cpp
-    src/Subject.cpp)
+    src/Observable.cpp
+    src/RenderingObserver.cpp
+    src/RenderingSystem.cpp)
 
 # Include directories
 include_directories(include)
@@ -49,7 +51,7 @@ function(add_test_suite class_name)
 
  add_test_suite(Engine)
  add_test_suite(Scene)
- add_test_suite(Subject)
+ add_test_suite(Observable)
 
 
 ##### INCLUDE AND LINK LIBRARIES #####

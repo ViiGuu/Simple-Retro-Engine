@@ -13,10 +13,11 @@ namespace sre
         managed->initialize();
 
         window = std::unique_ptr<Window>(new Window());
-        window->initialize("Game");
+        window->initialize("Game"); //fix custom names in the future
 
+        renderSys = std::unique_ptr<RenderingSystem>(new RenderingSystem());
         renderer = std::unique_ptr<Renderer>(new Renderer());
-        renderer->initialize(&window->getWindow());
+        renderer->initialize(&window->getWindow(), renderSys.get());
         
         managed->setRenderer(*renderer);
         managed->setWindow(*window);
@@ -33,9 +34,12 @@ namespace sre
             throw std::runtime_error("Window not created");
         window.reset();
 
+        if (!renderSys)
+            throw std::runtime_error("Rendering System not created");
+        renderSys.reset();
+    
         if (!renderer)
             throw std::runtime_error("Window not created");
-
         renderer.reset();
     }
 

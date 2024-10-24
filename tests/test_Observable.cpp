@@ -2,7 +2,7 @@
 #include <gmock/gmock.h>
 #include <SDL.h>
 #include "Observer.h"
-#include "Subject.h"
+#include "Observable.h"
 
 class TestObserver : public sre::Observer
 {
@@ -15,19 +15,19 @@ class TestObserver : public sre::Observer
 
 };
 
-class TestSubject : public sre::Subject
+class TestObservable : public sre::Observable
 {
     public:
-        TestSubject() = default;
-        ~TestSubject() = default;
+        TestObservable() = default;
+        ~TestObservable() = default;
 };
 
-class ObserverSubjectTest : public ::testing::Test 
+class ObserverObservableTest : public ::testing::Test 
 {
     protected:
         void SetUp() override 
         {
-            subject = new TestSubject();
+            subject = new TestObservable();
             observer1 = new TestObserver();
             observer2 = new TestObserver();
         }
@@ -42,32 +42,32 @@ class ObserverSubjectTest : public ::testing::Test
             observer2 = nullptr;
         }
 
-        TestSubject* subject;
+        TestObservable* subject;
         TestObserver* observer1;
         TestObserver* observer2;
 };
 
-TEST_F(ObserverSubjectTest, AddObserver) 
+TEST_F(ObserverObservableTest, AddObserver) 
 {
     subject->add(observer1);
     EXPECT_EQ(1, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, AddSameObserverTwice) 
+TEST_F(ObserverObservableTest, AddSameObserverTwice) 
 {
     subject->add(observer1);
     subject->add(observer1);
     EXPECT_EQ(1, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, AddNullptr)
+TEST_F(ObserverObservableTest, AddNullptr)
 {
     TestObserver* nullObs = nullptr;
     subject->add(nullObs);
     EXPECT_EQ(0, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, RemoveObserver) 
+TEST_F(ObserverObservableTest, RemoveObserver) 
 {
     subject->add(observer1);
     subject->add(observer2);
@@ -77,7 +77,7 @@ TEST_F(ObserverSubjectTest, RemoveObserver)
     EXPECT_EQ(1, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, RemoveNonexistentObserver) 
+TEST_F(ObserverObservableTest, RemoveNonexistentObserver) 
 {
     subject->add(observer1);
     EXPECT_EQ(1, subject->getObservers().size());
@@ -87,7 +87,7 @@ TEST_F(ObserverSubjectTest, RemoveNonexistentObserver)
     EXPECT_EQ(1, subject->getObservers().size());
 }
 
-TEST_F(ObserverSubjectTest, NotifyObservers) 
+TEST_F(ObserverObservableTest, NotifyObservers) 
 {
     subject->add(observer1);
     subject->add(observer2);
@@ -102,7 +102,7 @@ TEST_F(ObserverSubjectTest, NotifyObservers)
 }
 
 
-TEST_F(ObserverSubjectTest, NotifyEmptyObserverList) 
+TEST_F(ObserverObservableTest, NotifyEmptyObserverList) 
 {
     EXPECT_NO_THROW(subject->notify());
 }

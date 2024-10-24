@@ -46,7 +46,9 @@ namespace sre
             void initialize();
         private:
             //ensure that a Scene is present before run() is called
-            std::unique_ptr<SceneNavigatorInterface> scenes;
+            std::unique_ptr<SceneNavigatorInterface> scenes; // will it need this pointer? if the scene communicates with the observer/observable...z
+            //vector of observables for different systems?
+            //if so a lot of different systems can be handled in a decoupled way.
             WindowInterface* window; //these 2 might be redundant to keep in Engine
             RendererInterface* renderer;
             Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
@@ -54,7 +56,6 @@ namespace sre
             //TODO look over how the different parts should interact in general...
             //TODO scenes.getActive().update(); or something
             void update();
-            //might not be relevant, EITHER move to Scene, or figure out how to decouple more and just have a RenderingSystem handle it
             void render();
 
             friend class EngineManager;
