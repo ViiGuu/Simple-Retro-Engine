@@ -1,11 +1,14 @@
 #include "RenderingSystem.h"
 namespace sre
 {
-    Entity& RenderingSystem::getEntity()
+    Entity* RenderingSystem::pop()
     {
+        if(entities.empty())
+            return nullptr;
+        
         Entity* ent = entities.front();
         entities.pop();
-        return *ent;
+        return ent;
     }
 
     void RenderingSystem::push(Entity* entity)

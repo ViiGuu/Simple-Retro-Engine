@@ -12,6 +12,7 @@ namespace sre
             virtual ~SystemInterface() = default;
             virtual void update() = 0;
             virtual void push(Entity* entity) = 0;
+            virtual Entity* pop() = 0;
         private:
             //implement queue for implementation
 

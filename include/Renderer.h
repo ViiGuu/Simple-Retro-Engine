@@ -3,6 +3,7 @@
 
 #include "RendererInterface.h"
 #include "SystemInterface.h"
+#include "Entity.h"
 #include <iostream>
 #include <SDL2/SDL.h>
 
@@ -27,7 +28,6 @@ namespace sre
             void draw() override;
             //this can probably be private and called from draw which goes through the renderingSystem queue?
             //can pass something like while queue not empty, pop Entity and pass to drawEntity
-            void drawEntity(void* texture, void* rect) override;
             void initialize(SDL_Window* window, SystemInterface* renderingSys);
         protected:
         private:

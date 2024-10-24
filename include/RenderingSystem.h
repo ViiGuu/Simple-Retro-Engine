@@ -18,8 +18,8 @@ namespace sre
             RenderingSystem() : entities() {};
             ~RenderingSystem() = default; //will the pointers in queue need to be managed?
             void update() override {}
-            //Returns Entity in front of queue and removes it. Can return nullptr.
-            Entity& getEntity();
+            /* Returns the Entity in front of the queue and removes it. Can return nullptr. */
+            Entity* pop() override;
             void push(Entity* entity) override;
         private:
             std::queue<Entity*> entities;
