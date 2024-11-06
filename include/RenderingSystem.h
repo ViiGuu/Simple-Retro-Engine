@@ -6,19 +6,20 @@
 
 namespace sre
 {
+    /**
+     * The RenderingSystem is basically a queue wrapper class. RenderingObservers communicates with RenderingSystem
+     * and pushes Entities/Renderables into its queue. The Renderer then pops the Entities/Renderables and renders them
+     * during the rendering stage of the game loop.
+     */
     class RenderingSystem : public SystemInterface
     {
-        //TODO:
-        //What if Engine has a ref to RenderingSystem?
-        //if so then all Observables (even RenderingObservables)
-        //can be bunched up and called during update
-        //RenderingObservable then pushes Entities for rendering onto the RenderingSys queue
-        //which then gets rendered during Engine's render() call
+        //TODO: let the renderingsystem handle RenderableComponents instead of entire entities.
+        //(once they are implemented that is)
         public:
             RenderingSystem() : entities() {};
-            ~RenderingSystem() = default; //will the pointers in queue need to be managed?
+            ~RenderingSystem() = default;
             void update() override {}
-            /* Returns the Entity in front of the queue and removes it. Can return nullptr. */
+            /* Returns the Entity in front of the queue and removes it, or nullptr if the queue is empty*/
             Entity* pop() override;
             void push(Entity* entity) override;
         private:

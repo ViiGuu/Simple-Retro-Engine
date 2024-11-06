@@ -7,6 +7,8 @@ namespace sre
     {
         public:
             virtual ~ComponentInterface() = default;
+        private:
+            virtual void pureVirtual() = 0;
     };
 }
 
