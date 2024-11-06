@@ -1,8 +1,9 @@
 #ifndef MANAGER_H
 #define MANAGER_H
-
+/// \cond
 #include <memory>
 #include <stdexcept>
+/// \endcond
 
 /**
  * Interface for managing the creation and destruction of an object, with an internal smart pointer

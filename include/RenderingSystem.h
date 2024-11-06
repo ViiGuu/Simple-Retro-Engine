@@ -2,7 +2,9 @@
 #define RENDERING_SYSTEM_H
 
 #include "SystemInterface.h"
+/// \cond
 #include <queue>
+/// \endcond
 
 namespace sre
 {

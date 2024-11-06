@@ -1,8 +1,8 @@
 #ifndef WINDOW_INTERFACE_H
 #define WINDOW_INTERFACE_H
-
+/// \cond
 #include <iostream>
-
+/// \endcond
 namespace sre
 {
     class WindowInterface

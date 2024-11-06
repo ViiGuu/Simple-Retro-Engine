@@ -1,12 +1,13 @@
 #ifndef ENGINEMANAGER_H
 #define ENGINEMANAGER_H
-
+/// \cond
+#include <memory>
+/// \endcond
 #include "Engine.h"
 #include "Manager.h"
 #include "Renderer.h"
 #include "RenderingSystem.h"
 #include "Window.h"
-#include <memory>
 
 namespace sre
 {
@@ -17,9 +18,9 @@ namespace sre
      * 
      * @author Viggo Gustafsson
      */
-    //TODO maybe use builder pattern to create the engine, allow user to specify Window, Renderer details etc. just a thought
     class EngineManager : public Manager<Engine>
     {
+        //TODO maybe use builder pattern to create the engine, allow user to specify Window, Renderer details etc. just a thought
         public:
             EngineManager() = default;
             ~EngineManager() = default;

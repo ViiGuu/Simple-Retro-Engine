@@ -1,7 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
-
+/// \cond
 #include <vector>
+/// \endcond
 #include "ComponentInterface.h"
 
 namespace sre

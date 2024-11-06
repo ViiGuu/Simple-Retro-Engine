@@ -1,10 +1,11 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
-
-#include "Observer.h"
+/// \cond
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+/// \endcond
+#include "Observer.h"
 
 namespace sre
 {

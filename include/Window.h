@@ -2,7 +2,9 @@
 #define WINDOW_H
 
 #include "WindowInterface.h"
+/// \cond
 #include <SDL2/SDL.h>
+/// \endcond
 
 namespace sre
 {

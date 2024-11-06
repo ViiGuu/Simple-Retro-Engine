@@ -1,7 +1,8 @@
 #ifndef SCENE_INTERFACE_H
 #define SCENE_INTERFACE_H
-
+/// \cond
 #include <vector>
+/// \endcond
 namespace sre
 {
     template <typename T>

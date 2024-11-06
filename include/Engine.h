@@ -1,6 +1,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+/// \cond
 #include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
@@ -11,6 +12,7 @@
 #include <stdexcept>
 #include <memory>
 #include <vector>
+/// \endcond
 #include "Manager.h"
 #include "SceneNavigatorInterface.h"
 #include "RendererInterface.h"
@@ -46,7 +48,7 @@ namespace sre
             void initialize();
         private:
             //ensure that a Scene is present before run() is called
-            std::unique_ptr<SceneNavigatorInterface> scenes; // will it need this pointer? if the scene communicates with the observer/observable...z
+            std::unique_ptr<SceneNavigatorInterface> scenes; // will it need this pointer? if the scene communicates with the observer/observable...
             //vector of observables for different systems?
             //if so a lot of different systems can be handled in a decoupled way.
             WindowInterface* window; //these 2 might be redundant to keep in Engine

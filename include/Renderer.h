@@ -4,8 +4,10 @@
 #include "RendererInterface.h"
 #include "SystemInterface.h"
 #include "Entity.h"
+/// \cond
 #include <iostream>
 #include <SDL2/SDL.h>
+/// \endcond
 
 namespace sre
 {

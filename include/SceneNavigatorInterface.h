@@ -1,8 +1,9 @@
 #ifndef SCENE_NAVIGATOR_INTERFACE_H
 #define SCENE_NAVIGATOR_INTERFACE_H
-
+/// \cond
 #include <map>
 #include <memory>
+/// \endcond
 
 namespace sre
 {
