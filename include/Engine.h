@@ -9,12 +9,14 @@
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 #include <atomic>
+#include <algorithm>
 #include <stdexcept>
 #include <memory>
 #include <vector>
 /// \endcond
 #include "Manager.h"
 #include "SceneNavigatorInterface.h"
+#include "SystemInterface.h"
 #include "RendererInterface.h"
 #include "WindowInterface.h"
 
@@ -49,24 +51,11 @@ namespace sre
         private:
             //ensure that a Scene is present before run() is called
             std::unique_ptr<SceneNavigatorInterface> scenes; // will it need this pointer? if the scene communicates with the observer/observable...
-            
-            //TODO: set up EventHandler, EventInterface, Queue for Events
-                // each event type will have its own Handler, like InputHandler.
-                // the engine holds a collection of EventHandlers.
-                // each EventHandler produces Events, places on a Queue(then Engine could have an EventQueue, and Handlers can be decoupled.)
-                // Events are popped from the queue and passed along to appropriate Observable.
-                // Observable notifies Observers, which handles Event in appropriate ways.
-
-                //EVENTHANDLER LOGIC:
-                    //EventHandlers contain knowledge of necessary data to create an appropriate Event.
-                    //EventHandlers holds a unique_ptr to an Event.
-                    //When an Event needs to be processed the EventHandler gives the Event correct values, then places it onto the EventQueue
-
-            //vector of observables for different systems?
-            //if so a lot of different systems can be handled in a decoupled way.
+            //collection of systems, the Engine calls each system's update() in each iteration of the game loop.
+            std::vector<SystemInterface*> systems;
             WindowInterface* window; //these 2 might be redundant to keep in Engine
             RendererInterface* renderer;
-            Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
+            Engine() : window(nullptr), renderer(nullptr), initialized(false), systems() {}
             bool initialized;
             void update();
             void render();

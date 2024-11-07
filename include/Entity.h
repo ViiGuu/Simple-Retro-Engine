@@ -10,13 +10,12 @@ namespace sre
     class Entity
     {
         public:
-            //set to protected default so subclasses can use.
            Entity(const Entity&) = delete;
            Entity& operator=(const Entity& other) = delete;
         protected:
             Entity() = default;
         private:
-            const int id;
+            const int id; //relevant?
             std::vector<ComponentInterface> components;
     };
 }

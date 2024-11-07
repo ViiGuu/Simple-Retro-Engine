@@ -74,8 +74,14 @@ namespace sre
 
     void Engine::update()
     {
-        //loop through Observables?
-        //update scene
+        //check for empty sys?
+
+        std::for_each(systems.begin(), systems.end(),
+        [](SystemInterface* sys)
+        {
+            sys->update();
+        });
+
         renderer->update();
     }
 
