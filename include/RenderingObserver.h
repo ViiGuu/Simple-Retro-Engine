@@ -13,8 +13,6 @@ namespace sre
     class RenderingObserver : public Observer
     {
         //TODO create some unit tests once a RenderableComponent has been implemented
-        //MAYBE it makes more sense to not have this observer attached to the RenderingSystem,
-        //instead use Observable which pushes the Observer into the RenderingSystem queue
         public:
             RenderingObserver(SystemInterface* renderSys) : renderingSystem(renderSys) {}
             void update() override;

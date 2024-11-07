@@ -16,8 +16,6 @@ namespace sre
         private:
             //implement queue for implementation
 
-            //TODO implement CollisionHandlerSystem?
-
     };
 }
 

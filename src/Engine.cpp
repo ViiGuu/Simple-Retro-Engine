@@ -45,6 +45,8 @@ namespace sre
         if(isInitialized())
             return;
 
+        //TODO: initialize all the Observables. potentially refactor into some kind of Builder and let user decide which observables to initialize with (or just straight up let them add them before calling init)
+
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
         {
             std::cerr << "Failed to initialize SDL! SDL error: " << SDL_GetError() << std::endl;
@@ -62,6 +64,7 @@ namespace sre
 
     void Engine::run()
     {
+        //TODO: add quitting logic.
         while(true)
         {
             update();
@@ -71,6 +74,7 @@ namespace sre
 
     void Engine::update()
     {
+        //loop through Observables?
         //update scene
         renderer->update();
     }

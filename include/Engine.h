@@ -49,14 +49,25 @@ namespace sre
         private:
             //ensure that a Scene is present before run() is called
             std::unique_ptr<SceneNavigatorInterface> scenes; // will it need this pointer? if the scene communicates with the observer/observable...
+            
+            //TODO: set up EventHandler, EventInterface, Queue for Events
+                // each event type will have its own Handler, like InputHandler.
+                // the engine holds a collection of EventHandlers.
+                // each EventHandler produces Events, places on a Queue(then Engine could have an EventQueue, and Handlers can be decoupled.)
+                // Events are popped from the queue and passed along to appropriate Observable.
+                // Observable notifies Observers, which handles Event in appropriate ways.
+
+                //EVENTHANDLER LOGIC:
+                    //EventHandlers contain knowledge of necessary data to create an appropriate Event.
+                    //EventHandlers holds a unique_ptr to an Event.
+                    //When an Event needs to be processed the EventHandler gives the Event correct values, then places it onto the EventQueue
+
             //vector of observables for different systems?
             //if so a lot of different systems can be handled in a decoupled way.
             WindowInterface* window; //these 2 might be redundant to keep in Engine
             RendererInterface* renderer;
             Engine() : window(nullptr), renderer(nullptr), initialized(false) {}
             bool initialized;
-            //TODO look over how the different parts should interact in general...
-            //TODO scenes.getActive().update(); or something
             void update();
             void render();
 

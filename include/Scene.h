@@ -8,8 +8,8 @@ namespace sre
 {
     class Scene : public SceneInterface<Entity> //is Entity the right call?
     {
-        //TODO:
-        //this might need a bit of a revamp:
+        //TODO:this might need a bit of a revamp:
+        //
         //have the Scene be responsible for attaching Observers into the Engine's Observables
         //this would mean that scene-related entities can be thrown in and removed,
         //but "global" entities like UI and player stuff can still be handled outside of it
@@ -30,8 +30,6 @@ namespace sre
         private:
             std::vector<Entity> entities;
             //maybe instead of vector of entities, maybe Observers?
-            //OR a map of Observer : Observable.
-            //this way you can easily activate the scene by setting the observer key to its observable value.
     };
 }
 #endif
