@@ -16,7 +16,7 @@ namespace sre
         public:
             RenderingObserver(SystemInterface* renderSys) : renderingSystem(renderSys) {}
             void update() override;
-            void update(Entity* entity);
+            void update(Entity* entity); //component instead of entity
         private:
             SystemInterface* renderingSystem;
     };

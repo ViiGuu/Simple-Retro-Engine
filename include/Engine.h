@@ -36,6 +36,7 @@ namespace sre
      */
     class Engine
     {
+        
         public:
             ~Engine();
             WindowInterface& getWindow();

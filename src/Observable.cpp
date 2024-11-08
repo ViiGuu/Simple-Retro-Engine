@@ -7,7 +7,7 @@ namespace sre
     {
         return observers;
     }
-    void Observable::remove(Observer* obs) //do i also need to clean up the removed observer itself?
+    void Observable::remove(Observer* obs)
     {
         observers.erase(
             std::remove(observers.begin(), observers.end(), obs), 

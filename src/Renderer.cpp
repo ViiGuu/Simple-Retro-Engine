@@ -39,7 +39,7 @@ namespace sre
 
             // SDL_RenderCopy(renderer, static_cast<SDL_Texture*>(texture), NULL, static_cast<SDL_Rect*>(rect));
         }
-
+        
         SDL_RenderPresent(renderer);
     }
 

@@ -15,8 +15,8 @@ namespace sre
      */
     class RenderingSystem : public SystemInterface
     {
-        //TODO: let the renderingsystem handle RenderableComponents instead of entire entities.
-        //(once they are implemented that is)
+        //TODO: Refactor, merge with Renderer (make Renderer implement System) and implement Observable.
+            //Should handle Components (RenderableComponents) instead of Entities
         public:
             RenderingSystem() : entities() {};
             ~RenderingSystem() = default;
