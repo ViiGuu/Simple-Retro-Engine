@@ -4,11 +4,17 @@
 #include "Observer.h"
 #include "Observable.h"
 
+class TestComponent : public sre::ComponentInterface
+{
+    public:
+        TestComponent() = default;
+};
+
 class TestObserver : public sre::Observer
 {
-    public: 
+    public:  
         TestObserver() : testOutput("nothing") {};
-        void update() override {testOutput = "updated";}
+        void update(const std::any& data) override { testOutput = std::any_cast<std::string>(data);}
         std::string getOutput(){ return testOutput;}
     private:
         std::string testOutput;
@@ -20,6 +26,13 @@ class TestObservable : public sre::Observable
     public:
         TestObservable() = default;
         ~TestObservable() = default;
+        void notify(const std::any& data) override
+        {
+            for (auto obs : observers)
+            {
+                obs->update(data);
+            }
+        }
 };
 
 class ObserverObservableTest : public ::testing::Test 
@@ -95,7 +108,7 @@ TEST_F(ObserverObservableTest, NotifyObservers)
     EXPECT_EQ("nothing", observer1->getOutput());
     EXPECT_EQ("nothing", observer2->getOutput());
 
-    subject->notify();
+    subject->notify(std::string("updated"));
 
     EXPECT_EQ("updated", observer1->getOutput());
     EXPECT_EQ("updated", observer2->getOutput());
@@ -104,5 +117,5 @@ TEST_F(ObserverObservableTest, NotifyObservers)
 
 TEST_F(ObserverObservableTest, NotifyEmptyObserverList) 
 {
-    EXPECT_NO_THROW(subject->notify());
+    EXPECT_NO_THROW(subject->notify("do not throw"));
 }

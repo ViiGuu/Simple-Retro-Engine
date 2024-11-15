@@ -24,12 +24,11 @@ namespace sre
         }
     }
 
-    void Observable::notify()
+    void Observable::notify(const std::any& event)
     {
-       std::for_each(observers.begin(), observers.end(),
-       [](Observer* obs)
-       {
-        obs->update(); //this should have different args based on implementation
-       });
+        for (auto obs : observers)
+        {
+            obs->update(event);
+        }
     }
 }

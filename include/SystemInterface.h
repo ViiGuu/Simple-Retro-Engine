@@ -1,7 +1,7 @@
 #ifndef SYSTEM_INTERFACE_H
 #define SYSTEM_INTERFACE_H
 
-#include "Entity.h"
+#include "ComponentInterface.h"
 
 namespace sre
 {
@@ -11,8 +11,8 @@ namespace sre
             SystemInterface() = default;
             virtual ~SystemInterface() = default;
             virtual void update() = 0;
-            virtual void push(Entity* entity) = 0;
-            virtual Entity* pop() = 0;
+            virtual void push(ComponentInterface* component) = 0;
+            virtual ComponentInterface* pop() = 0;
         private:
             //implement queue for implementation
 

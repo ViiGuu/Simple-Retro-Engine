@@ -10,18 +10,17 @@
 
 namespace sre
 {
+    /** Observable interface to handle one to many event/data passing. Concrete observers need to implement their own notify() */
     class Observable
     {
-        
        public:
             Observable(const Observable& other) = delete;
             Observable& operator=(const Observable& other) = delete;
-            const std::vector<Observer*>& getObservers();
+            const std::vector<Observer*>& getObservers(); //might be necessary for Scenes?
             virtual void add(Observer* obs);
             virtual void remove(Observer* obs);
-            //make pure virtual, pass Event as param. or overload for concrete implementations......
-            virtual void notify();
-            virtual void notify(const std::any& data) = 0;
+            //Concrete implementations should cast the Observer to the appropriate type, i.e RenderableObserver
+            virtual void notify(const std::any& event);
         protected:
             Observable() : observers() {};
             std::vector<Observer*> observers;

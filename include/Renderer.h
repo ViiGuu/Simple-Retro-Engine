@@ -3,7 +3,7 @@
 
 #include "RendererInterface.h"
 #include "SystemInterface.h"
-#include "Entity.h"
+#include "ComponentInterface.h"
 /// \cond
 #include <iostream>
 #include <SDL2/SDL.h>

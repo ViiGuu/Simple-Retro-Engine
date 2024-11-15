@@ -1,19 +1,23 @@
 #include "RenderingSystem.h"
 namespace sre
 {
-    Entity* RenderingSystem::pop()
+    ComponentInterface* RenderingSystem::pop()
     {
-        if(entities.empty())
+        if(components.empty())
             return nullptr;
         
-        Entity* ent = entities.front();
-        entities.pop();
+        ComponentInterface* ent = components.front();
+        components.pop();
         return ent;
     }
 
-    void RenderingSystem::push(Entity* entity)
+    void RenderingSystem::push(ComponentInterface* component)
     {
-        if(entity != nullptr)
-            entities.push(entity);
+        if(component != nullptr)
+        {   
+            RenderableComponent* ren = dynamic_cast<RenderableComponent*>(component);
+            if(ren != nullptr)
+                components.push(component);
+        }
     }
 }

@@ -2,6 +2,7 @@
 #define RENDERING_SYSTEM_H
 
 #include "SystemInterface.h"
+#include "RenderableComponent.h"
 /// \cond
 #include <queue>
 /// \endcond
@@ -10,22 +11,22 @@ namespace sre
 {
     /**
      * The RenderingSystem is basically a queue wrapper class. RenderingObservers communicates with RenderingSystem
-     * and pushes Entities/Renderables into its queue. The Renderer then pops the Entities/Renderables and renders them
+     * and pushes components/Renderables into its queue. The Renderer then pops the components/Renderables and renders them
      * during the rendering stage of the game loop.
      */
     class RenderingSystem : public SystemInterface
     {
         //TODO: Refactor, merge with Renderer (make Renderer implement System) and implement Observable.
-            //Should handle Components (RenderableComponents) instead of Entities
+            //Should handle Components (RenderableComponents) instead of components
         public:
-            RenderingSystem() : entities() {};
+            RenderingSystem() : components() {};
             ~RenderingSystem() = default;
             void update() override {}
-            /* Returns the Entity in front of the queue and removes it, or nullptr if the queue is empty*/
-            Entity* pop() override;
-            void push(Entity* entity) override;
+            /* Returns the ComponentInterface in front of the queue and removes it, or nullptr if the queue is empty*/
+            ComponentInterface* pop() override;
+            void push(ComponentInterface* component) override;
         private:
-            std::queue<Entity*> entities;
+            std::queue<ComponentInterface*> components;
     };
 }
 

@@ -15,7 +15,7 @@ namespace sre
 
     void Renderer::draw()
     {
-        while(Entity* ent = renderingSystem->pop())
+        while(ComponentInterface* component = renderingSystem->pop())
         {
             //swap out texture and rect with ent.getRen.texture() etc.
             //consider checking for RenderableComponent thingie in ent.
