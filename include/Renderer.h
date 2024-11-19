@@ -2,8 +2,8 @@
 #define RENDERER_H
 
 #include "RendererInterface.h"
-#include "SystemInterface.h"
-#include "ComponentInterface.h"
+#include "RenderingSystem.h"
+#include "RenderableComponent.h"
 /// \cond
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -23,10 +23,10 @@ namespace sre
             inline SDL_Renderer& getRenderer() {return *renderer;}
             void update() override;
             void draw() override;
-            void initialize(SDL_Window* window, SystemInterface* renderingSys);
+            void initialize(SDL_Window* window, RenderingSystem* renderingSys);
         protected:
         private:
-            SystemInterface* renderingSystem;
+            RenderingSystem* renderingSystem;
             SDL_Renderer* renderer;
     };
 }

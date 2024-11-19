@@ -20,7 +20,7 @@ namespace sre
      */
     class EngineManager : public Manager<Engine>
     {
-        //TODO maybe use builder pattern to create the engine, allow user to specify Window, Renderer details etc. just a thought
+        //TODO maybe use builder pattern to create the engine, allow user to specify Window, Renderer details etc.
         public:
             EngineManager() = default;
             ~EngineManager() = default;

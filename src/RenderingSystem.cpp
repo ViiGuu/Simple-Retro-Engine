@@ -1,14 +1,14 @@
 #include "RenderingSystem.h"
 namespace sre
 {
-    ComponentInterface* RenderingSystem::pop()
+    RenderableComponent* RenderingSystem::pop()
     {
-        if(components.empty())
+        if(renderables.empty())
             return nullptr;
         
-        ComponentInterface* ent = components.front();
-        components.pop();
-        return ent;
+        RenderableComponent* ren = renderables.front();
+        renderables.pop();
+        return ren;
     }
 
     void RenderingSystem::push(ComponentInterface* component)
@@ -17,7 +17,7 @@ namespace sre
         {   
             RenderableComponent* ren = dynamic_cast<RenderableComponent*>(component);
             if(ren != nullptr)
-                components.push(component);
+                renderables.push(ren);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace sre
         if(isInitialized())
             return;
 
-        //TODO: initialize all the Observables. potentially refactor into some kind of Builder and let user decide which observables to initialize with (or just straight up let them add them before calling init)
+        //TODO: initialize all the Observables. Maybe let the user set up Observables first, and then initialize them.
 
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0) 
         {
@@ -76,11 +76,8 @@ namespace sre
     {
         //check for empty sys?
 
-        std::for_each(systems.begin(), systems.end(),
-        [](SystemInterface* sys)
-        {
+        for (auto sys : systems)
             sys->update();
-        });
 
         renderer->update();
     }

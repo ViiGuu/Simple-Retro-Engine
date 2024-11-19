@@ -15,10 +15,9 @@ namespace sre
 
     void Renderer::draw()
     {
-        while(ComponentInterface* component = renderingSystem->pop())
+        while(RenderableComponent* component = renderingSystem->pop())
         {
             //swap out texture and rect with ent.getRen.texture() etc.
-            //consider checking for RenderableComponent thingie in ent.
 
             // if(renderer == nullptr)
             //     throw std::runtime_error("Renderer has not been initialized");
@@ -43,7 +42,7 @@ namespace sre
         SDL_RenderPresent(renderer);
     }
 
-    void Renderer::initialize(SDL_Window* window, SystemInterface* renderingSys)
+    void Renderer::initialize(SDL_Window* window, RenderingSystem* renderingSys)
     {
         renderer = (SDL_CreateRenderer(window, SDL_RENDERER_ACCELERATED, 0));
         if (!renderer)
